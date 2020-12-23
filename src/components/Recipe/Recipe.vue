@@ -1,24 +1,24 @@
 <template>
     <div>
-       <div class="home-back d-flex align-center text-center">
-           <v-layout>
-               <v-flex>
-                   <h2>Recipe details</h2>
-               </v-flex>
-           </v-layout>
-       </div>
-       <div class="mt-12">
-           <v-container>
-           <v-layout>
-               <v-flex xs8 class="mx-auto">
-                   <v-layout>
-                       <v-flex xs12>
-                           <v-img :src="recipe.imageurl" max-height="425"></v-img>
-                       </v-flex>
-                   </v-layout>
+    <div class="home-back d-flex align-center text-center">
+        <v-laout>
+            <v-flex>
+                <h2>Recipe details</h2>
+            </v-flex>
+        </v-laout>
+    </div>
+    <div class="mt-12">
+        <v-container>
+        <v-layout>
+            <v-flex xs8 class="mx-auto">
+                <v-layout>
+                    <v-flex xs12>
+                        <v-img :src="recipe.imageurl" max-height="425"></v-img>
+                    </v-flex>
+                </v-layout>
                     <v-layout>
-                       <v-flex xs12>
-                           <h1 class="mt-6 spec-title">{{recipe.title}}</h1>
+                    <v-flex xs12>
+                        <h1 class="mt-6 spec-title">{{recipe.title}}</h1>
                             <!-- <div class="" v-if="UserCreator">
                                 <v-dialog
                                 v-model="dialog"
@@ -31,7 +31,7 @@
                                     v-bind="attrs"
                                     v-on="on"
                                     >
-                                   delete
+                                delete
                                     </v-btn>
                                 </template>
 
@@ -45,10 +45,10 @@
                                     <v-btn
                                         color="primary"
                                         text
-                                         @click.native="deleterecipe(recipe.id)">
+                                        @click.native="deleterecipe(recipe.id)">
                                         Yes
                                     </v-btn>
-                                      <v-btn
+                                    <v-btn
                                         color="primary"
                                         text
                                         @click="dialog = false"> Cancel
@@ -57,46 +57,46 @@
                                 </v-card>
                                 </v-dialog>
                             </div> -->
-                       </v-flex>
-                   </v-layout>
-                      <v-layout>
-                       <v-flex xs12>
-                           <div class="mt-4 blue-grey--text lighten-3--text
+                    </v-flex>
+                </v-layout>
+                <v-layout>
+                    <v-flex xs12>
+                        <div class="mt-4 blue-grey--text lighten-3--text
                             ">{{recipe.date | date}} | {{recipe.category}} | {{recipe.location}}
 
                         <edit-time v-if="UserCreator" :recipe = 'recipe'></edit-time>
                         <edit-date v-if="UserCreator" :recipe='recipe'></edit-date>
                         </div>
-                       </v-flex>
-                   </v-layout>
-                   <v-layout>
-                       <v-flex xs12>
-                           <p class="mt-6 spec-desc">{{recipe.description}}</p>
-                       </v-flex>
-                   </v-layout>
-                   <v-layout class="mb-8">
-                       <v-flex xs6 class="mr-8">
-                           <h2 class="bubble orange lighten-1 white--text py-3 px-5 rounded-lg my-6 ">Ingredients</h2>
+                    </v-flex>
+                </v-layout>
+                <v-layout>
+                    <v-flex xs12>
+                        <p class="mt-6 spec-desc">{{recipe.description}}</p>
+                    </v-flex>
+                </v-layout>
+                <v-layout class="mb-8">
+                    <v-flex xs6 class="mr-8">
+                        <h2 class="bubble orange lighten-1 white--text py-3 px-5 rounded-lg my-6 ">Ingredients</h2>
                             <li v-for="ing in recipe.ingredients" :key="ing" class="ingredient mt-2">
-                                {{ing}}
+                                {{ing.name}}
 
                             </li>
-                       </v-flex>
-                         <v-flex xs6 class="ml-4">
-                           <h2 class="bubble orange lighten-1 white--text py-3 px-5 rounded-lg my-6 ">Methods</h2>
+                    </v-flex>
+                        <v-flex xs6 class="ml-4">
+                        <h2 class="bubble orange lighten-1 white--text py-3 px-5 rounded-lg my-6 ">Methods</h2>
                             <li v-for="method in recipe.methods" :key="method" class="ingredient mt-2 upper-roman">
                                 {{method}}
 
                             </li>
-                       </v-flex>
-                   </v-layout>
-               </v-flex>
-               <v-flex xs3 class="mx-8" v-if="UserCreator">
-                   <edit-recipe :recipe='recipe'></edit-recipe>
-               </v-flex>
-           </v-layout>
-           </v-container>
-       </div>
+                    </v-flex>
+                </v-layout>
+            </v-flex>
+            <v-flex xs3 class="mx-8" v-if="UserCreator">
+                <edit-recipe :recipe='recipe'></edit-recipe>
+            </v-flex>
+        </v-layout>
+        </v-container>
+    </div>
     </div>
 </template>
 
@@ -115,18 +115,18 @@ export default {
         recipe(){
             return this.$store.getters.LoadRecipe(this.id)
         },
-         UserIsAuthenticated(){
+        UserIsAuthenticated(){
                 return this.$store.getters.user !== null && this.$store.getters.user !== undefined            
                 },
-            UserCreator(){
+        UserCreator(){
                 if(!this.UserIsAuthenticated){
                     return false
                 }
                 return this.$store.getters.user.id === this.recipe.createdid     
             },
+       
     },
     methods:{
-       
     },
 }
 </script>

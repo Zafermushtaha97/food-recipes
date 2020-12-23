@@ -3,7 +3,7 @@
     <v-container class="mt-14">
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-               <v-card   >
+            <v-card   >
                     <v-card-text>
                         <v-container>
                             <form @submit.prevent="Signup">
@@ -59,8 +59,7 @@
                                         <v-btn type="submit">
                                             Sign up
                                             <span slot="loader" class="custom-loader">
-                        <v-icon light>cached</v-icon>
-                       </span>
+                        <v-icon light>cached</v-icon></span>
                                         </v-btn>
                                     </v-flex>
                                 </v-layout>
@@ -78,7 +77,6 @@
 <script>
 
 export default {
-   
     name:'signup',
     data(){
         return{
@@ -90,7 +88,7 @@ export default {
                 v => !!v || 'Name is required',
                 v => (v && v.length <= 14) || 'Name must be less than 14 characters',
                 v => (v && v.length >= 4) || 'Name must be more than 4 characters',
-                 ],
+                ],
             emailRules:[
                 v => !!v || 'Email is required',
                 v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -119,8 +117,8 @@ export default {
     },
     methods:{
         Signup(){
-            this.$refs.form.validate()
-            this.$store.dispatch('Signupusers',{email:this.email,password:this.password})
+            //this.$refs.form.validate()
+            this.$store.dispatch('Signupusers',{email:this.email,password:this.password,username:this.username})
             this.$router.push('/')
         }
     }
