@@ -6,7 +6,7 @@
             <v-flex>
                 <v-card>
                     <v-img src="https://images.pexels.com/photos/2720445/pexels-photo-2720445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" height="450">
-                         <v-row align="center" class="lightbox white--text pa-2 fill-height text-center">
+                        <v-row align="center" class="lightbox white--text pa-2 fill-height text-center">
                                 <v-col>
                                     <div class="titlepage">RECIPES FOOD</div>
                                     <h1></h1>
@@ -17,9 +17,19 @@
             </v-flex>
         </v-layout>
 <v-container class="mt-14">
-  <v-layout>
-  <v-flex xs2>
-     <v-tooltip top disabled>
+  <v-layout class="justify-center">
+    <v-flex xs4>
+          <v-text-field
+            outlined
+            label="Search"
+            v-model="search"
+            prepend-inner-icon="mdi-magnify"
+          ></v-text-field>
+    </v-flex>
+    </v-layout>
+    <v-layout>
+    <v-flex xs2>
+    <v-tooltip top disabled>
       <template v-slot:activator="{ on }">
       <v-btn small  class="mr-3" color="primary" v-on:click="sortby('date')" v-on="on">
           <v-icon small left>mdi-folder</v-icon>
@@ -27,10 +37,10 @@
         </v-btn>
       </template>  
     </v-tooltip>
-     </v-flex>
- <v-flex xs3>
+    </v-flex>
+    <v-flex xs4>
         <v-btn small  class="mr-3" color="primary" >filter by categgory</v-btn>
-         <v-checkbox
+        <v-checkbox
               v-model="currentFilter"
               label="All"
               color="primary"
@@ -59,13 +69,6 @@
               hide-details
             ></v-checkbox>
     </v-flex>
-    <v-flex xs3>
-            <v-text-field
-            label="search.."
-            outlined
-            v-model="search"
-          ></v-text-field>
-    </v-flex>
     </v-layout>
 </v-container>
   <v-layout>
@@ -78,21 +81,21 @@
                 v-if="loading"></v-progress-circular>
       </v-flex>
     </v-layout>
-
-        <v-layout class="mt-12 mx-14"  v-for="recipe in filteredList" :key="recipe.title"
-         v-if="recipe.category === currentFilter || currentFilter === 'ALL'">
-            <v-flex xs8 class="pink lighten-2">
-                <div class="white">
-                    <v-card >
-                        <v-container>
-                            <v-layout row>
-                                <v-flex xs12>
+        <v-container>
+        <v-layout class="mt-12 mx-14 py-6 px-4 amber lighten-1"  v-for="recipe in filteredList" :key="recipe.title"
+        v-if="recipe.category === currentFilter || currentFilter === 'ALL'">
+            <v-flex xs8 class="">
+                <div class="white--text">
+                    <v-card class="">
+                        <v-container class="py-0">
+                          <v-layout row>
+                          <v-flex xs12>
                         <v-img :src="recipe.imageurl" height="250">
                         </v-img>
                         <v-card-title>{{recipe.title}}</v-card-title>
                         <v-card-text class="subtitle-1">{{recipe.description}}</v-card-text>
                         <v-card-actions>
-                             <v-btn
+                            <v-btn
                                 color="purple"
                                 text
                                 :to="'/recipes/' + recipe.id">Explore  </v-btn>
@@ -104,15 +107,15 @@
                 </div>
             </v-flex>
             <v-flex xs4>
-               <div class="pa-6"><v-list>
+              <div class="pa-6">
+                <v-list class="amber lighten-1">
                 <v-layout>
                     <v-flex xs12>
-                         <v-list-item class="cursor-pointer">
+                        <v-list-item class="cursor-pointer ">
                 <v-list-item-action>
                   <v-icon medium class="orange--text darken-2--text">mdi-food</v-icon>
                 </v-list-item-action>
-
-                <v-list-item-content>
+                <v-list-item-content class="white--text">
                   <v-list-item-title>{{recipe.category}}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -120,12 +123,12 @@
                 </v-layout>
                   <v-layout>
                     <v-flex xs12>
-                         <v-list-item class="cursor-pointer">
+                        <v-list-item class="cursor-pointer">
                 <v-list-item-action>
                   <v-icon  medium class="blue--text darken-3--text">mdi-timetable</v-icon>
                 </v-list-item-action>
 
-                <v-list-item-content>
+                <v-list-item-content class="white--text">
                   <v-list-item-title>{{recipe.date | date}}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -133,11 +136,11 @@
                 </v-layout>
                   <v-layout>
                     <v-flex xs12>
-                 <v-list-item class="cursor-pointer">
-                <v-list-item-action>
-                  <v-icon medium>mdi-map-marker-multiple</v-icon>
+                <v-list-item class="cursor-pointer ">
+                <v-list-item-action class="black--text">
+                  <v-icon class="black--text" medium>mdi-map-marker-multiple</v-icon>
                 </v-list-item-action>
-                <v-list-item-content>
+                <v-list-item-content class="white--text">
                   <v-list-item-title>{{recipe.location}}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -146,7 +149,7 @@
 
                   <v-layout v-if="UserCreator === recipe.createdid">
                     <v-flex xs12>
-                 <v-list-item class="cursor-pointer">
+                <v-list-item class="cursor-pointer">
                 <v-list-item-action>
                   <v-icon medium class="deep-purple--text lighten-5--text">mdi-account</v-icon>
                 </v-list-item-action>
@@ -157,9 +160,10 @@
                     </v-flex>
                 </v-layout>
           </v-list>
-               </div>
+              </div>
             </v-flex>
         </v-layout>
+        </v-container>
     </div>
 </template>
 
@@ -169,13 +173,17 @@ export default {
     data(){
       return{
         currentFilter:'ALL',
-        search:''
+        search:'',
+        items:['red foods','sweets','green foods']
       }
     },
-     computed:{
+    computed:{
     recipes(){
       return this.$store.getters.AllRecipes
     },
+    getuser(){
+            return this.$store.getters.user
+      },
     loading () {
       return this.$store.getters.loading
     },
@@ -194,7 +202,6 @@ export default {
         return this.$store.getters.user.id    
     },
     },
-   
     methods:{
       sortby(prop){
       this.recipes.sort((a,b) => a[prop] > b[prop] ? -1:1)
@@ -202,7 +209,7 @@ export default {
     filterby(prop){
       this.recipes.filter((a) => a[prop] === 'sweets' ? -1:1)
     }
-    }
+    },
 }
 </script>
 

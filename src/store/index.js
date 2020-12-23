@@ -46,6 +46,9 @@ export const store = new Vuex.Store({
       if (payload.title){
         recipe.title = payload.title
       }
+      if (payload.phone){
+        recipe.phone = payload.phone
+      }
       if (payload.description){
         recipe.description = payload.description
       }
@@ -78,6 +81,7 @@ export const store = new Vuex.Store({
         category:payload.category,
         ingredients:payload.ingredients,
         methods:payload.methods,
+        phone:payload.phone,
         date:payload.date.toISOString(),
         createdid:getters.user.id,
 
@@ -128,6 +132,7 @@ export const store = new Vuex.Store({
             date:obj[key].date,
             ingredients:obj[key].ingredients,
             methods:obj[key].methods,
+            phone:obj[key].phone,
             createdid:obj[key].createdid
             
           })
@@ -217,7 +222,7 @@ export const store = new Vuex.Store({
       })
     },
     FeatureRecipes(state,getters){
-       return getters.latestRecipes.slice(0,6)
+      return getters.latestRecipes.slice(0,6)
     },
     user(state){
       return state.user

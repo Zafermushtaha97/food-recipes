@@ -1,19 +1,19 @@
 <template>
 <div>
 <div class="home d-flex">
- <v-container>
+<v-container>
   <v-layout class="mt-12">
     <v-flex xs7 class="mt-16 pt-12">
       <p class="title-back">We belive good food offer great smile</p>
       <v-btn large="" class="amber darken-1 py-3 white--text"
       :to="'/recipes/'"
-       >View Recipes</v-btn>
+      >View Recipes</v-btn>
 
     </v-flex>
   </v-layout>
- </v-container>
- </div>
- <br>
+</v-container>
+</div>
+<br>
   <!-- <v-container>
   <v-layout class="my-14">
     <v-flex >
@@ -167,7 +167,7 @@ font-weight: 600;
 .title-back{
   font-family: 'Josefin Sans', sans-serif;
 font-weight: 700;
- font-size: 4em;
+ font-size: 2em;
  color: #212025;
 }
 .title-back2{
